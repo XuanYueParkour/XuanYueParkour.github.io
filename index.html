@@ -357,7 +357,190 @@
   </footer><!-- #footer -->
 
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+<!--APlayer -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css">
+</head>
+<body>  
+<div id="aplayer"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
+<script>
+    const ap = new APlayer({
+     
+        container: document.getElementById('aplayer'),
+        fixed: true,
+        autoplay: true,
+        lrcType: 0,
+        mutex: true,
+        order: 'random',
+        preload: 'auto',
+        listFolded: false,
+        theme: '#242424',
+        audio: [
+        {
+        name: "Nevada",
+        artist: 'Vicetone',
+        url: 'https://raw.githubusercontent.com/Xicrosoft/File/main/mp3/Nevada.mp3',
+        cover: 'http://p2.music.126.net/Rh1-t6gy1sQs0HWvqzsuDA==/109951167052639111.jpg',
+      },
+      {
+        name: 'Good Time',
+        artist: 'Owl City',
+        url: 'https://raw.githubusercontent.com/Xicrosoft/File/main/mp3/Good_Time.mp3',
+        cover: 'http://p1.music.126.net/c5NVKUIAUcyN4BQUDbGnEg==/109951163221157827.jpg',
+      },
+      {
+        name: 'Diary',
+        artist: 'Production Manic',
+        url: 'https://raw.githubusercontent.com/Xicrosoft/File/main/mp3/Diary.mp3',
+        cover: 'http://p2.music.126.net/-4GiPoFPOI6dV-f9jnUScQ==/109951164102703587.jpg',
+      },
+      {
+        name: 'Normal No More',
+        artist: 'TYSM',
+        url: 'https://raw.githubusercontent.com/Xicrosoft/File/main/mp3/Normal No More.mp3',
+        cover: 'http://p1.music.126.net/s3mKaXDECHZlxi43d7bkCA==/109951164905500417.jpg',
+      },
+      {
+        name: '溯Reverse',
+        artist: 'CORSAK',
+        url: https://raw.githubusercontent.com/Xicrosoft/File/main/mp3/Reverse.mp3',
+        cover: 'http://p2.music.126.net/awh9K8lfyyOtr5X0ysgBFw==/109951164802649972.jpg',
+      },
+      {
+        name: 'Timber',
+        artist: 'CDM Project',
+        url: 'https://raw.githubusercontent.com/Xicrosoft/File/main/mp3/Timber.mp3',
+        cover: 'http://p2.music.126.net/WjVj_XCesBeCkDUOsg0vWA==/109951163804817824.jpg',
+      },
+      {
+        name: 'L.I.F.E.',
+        artist: 'Remady',
+        url: 'https://raw.githubusercontent.com/Xicrosoft/File/main/mp3/LIFE.mp3',
+        cover: 'http://p2.music.126.net/YjBiIYfc2jJpR7yaTrMK9w==/109951165976180004.jpg',
+      },
+      {
+        name: 'Breath',
+        artist: 'Pluto｜ye.',
+        url: 'https://raw.githubusercontent.com/Xicrosoft/File/main/mp3/Breath.mp3',
+        cover: 'http://p1.music.126.net/2BVXxrUgiJ6y3lSwDMMyyQ==/18560855788522506.jpg',
+      },
+      {
+        name: '打上火花',
+        artist: 'Daoko｜米津玄師',
+        url: 'https://raw.githubusercontent.com/Xicrosoft/File/main/mp3/%E6%89%93%E4%B8%8A%E8%8A%B1%E7%81%AB.mp3',
+        cover: 'http://p2.music.126.net/IeyCexR3Hg9NnVY9TDCD3w==/109951166530781958.jpg',
+      },
+      {
+        name: 'Light It Up',
+        artist: 'Robin Hustin',
+        url: 'https://raw.githubusercontent.com/Xicrosoft/File/main/mp3/Light It Up.mp3',
+        cover: 'http://p1.music.126.net/Q3gxjRt7HkQik97Z67DAeg==/109951163571146846.jpg',
+      },
+      {
+        name: 'Summertime',
+        artist: 'Cinnamons',
+        url: 'https://raw.githubusercontent.com/Xicrosoft/File/main/mp3/Summertime.mp3',
+        cover: 'http://p2.music.126.net/MAgy-d9HUVA_-4vWNbH6kw==/109951166331133553.jpg',
+      },
+      {
+        name: 'Roar',
+        artist: 'EMBRZ',
+        url: 'https://raw.githubusercontent.com/Xicrosoft/File/main/mp3/Roar.mp3',
+        cover: 'http://p2.music.126.net/w3OJzkIN0gFodTsMtnMPng==/109951167056672188.jpg',
+      },
+      {
+        name: 'Breathe',
+        artist: 'EMBRZ',
+        url: 'https://raw.githubusercontent.com/Xicrosoft/File/main/mp3/Breathe.mp3',
+        cover: 'http://p1.music.126.net/02aMvvyzD_jqzt1q5i-Nfg==/109951164643210368.jpg',
+      }
+      ]
+    });
+</script>
 
+
+<!-- Go Play -->
+<script>
+    $(document).ready(function(){
+        if (typeof (Storage) !== 'undefined' && sessionStorage.getItem('playStatus') !== null) {
+            var index = sessionStorage.getItem('musicIndex');
+            var playStatus = sessionStorage.getItem('playStatus');
+            var currentTime = sessionStorage.getItem('currentTime');
+            var mode = sessionStorage.getItem('mode');
+            var list = sessionStorage.getItem('list');
+            var lrc = sessionStorage.getItem('lrc');
+            ap.list.switch(index);
+            ap.setMode(mode);
+            lrc==='false' ? ap.lrc && ap.lrc.show() : (ap.template.lrcButton.classList.add("aplayer-icon-lrc-inactivity"), ap.lrc && ap.lrc.hide())
+            list==='false' ? ap.list.show() : ap.list.hide();
+            ap.audio.currentTime = currentTime;
+            if(playStatus === 'false'){
+                ap.play();
+            }
+        }
+        setInterval(function () {
+            if (typeof (Storage) !== 'undefined') {
+                window.sessionStorage.setItem('playStatus', ap.audio.paused);
+                window.sessionStorage.setItem('currentTime', ap.audio.currentTime);
+                window.sessionStorage.setItem('musicIndex', ap.list.index);
+                window.sessionStorage.setItem('mode', ap.mode);
+                window.sessionStorage.setItem('list', ap.template.list.classList.contains("aplayer-list-hide"));
+                window.sessionStorage.setItem('lrc', ap.template.lrcButton.classList.contains("aplayer-icon-lrc-inactivity"));
+            }
+        }, 100);
+    })
+</script>
+
+
+<!--copy plus-->
+<script type="text/javascript">
+var Sys = {};
+var ua = navigator.userAgent.toLowerCase();
+if( window.ActiveXObject ){
+    document.body.oncopy = function(){
+        event.returnValue = false;
+        var t=document.selection.createRange().text;
+        var s=" </br></br>原文链接："+location.href;
+        clipboardData.setData('Text',t+'\r\n'+s);
+    };
+}else{
+    function addLink(){
+        var body_element = document.getElementsByTagName('body')[0];
+        var selection;
+        selection = window.getSelection();
+        var pagelink = " </br></br>原文链接："+location.href;
+        var copytext = selection + pagelink;
+        var newdiv = document.createElement('div');
+        newdiv.style.position='absolute';
+        newdiv.style.left='-99999px';
+        body_element.appendChild(newdiv);
+        newdiv.innerHTML = copytext;
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function(){body_element.removeChild(newdiv);},0);
+    }
+    document.oncopy = addLink;
+}
+</script>
+
+<!-- F12 & Left -->
+<script language="JavaScript">
+    //Left
+    document.οncοntextmenu=function(){return false;}; 
+    let h = window.innerHeight;
+    let w = window.innerWidth;
+
+    //Left
+    document.oncontextmenu = function () { return false; };
+
+    //Dev Tools F12
+    document.onkeydown = function () {
+        if (window.event && window.event.keyCode == 123) {
+            event.keyCode = 0;
+            event.returnValue = false;
+            return false;
+        }
+    }
+    </script>
   <!-- JavaScript Libraries -->
   <script src="assets/lib/jquery/jquery.min.js"></script>
   <script src="assets/lib/jquery/jquery-migrate.min.js"></script>
@@ -375,8 +558,6 @@
   <!-- Contact Form JavaScript File -->
   <script src="assets/contactform/contactform.js"></script>
   <!-- Template Main Javascript File -->
-      <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script src="static/js/yinghua.js"></script><script src="https://myhkw.cn/api/player/1612581324135" id="myhk" key="1612581324135" m="1"></script><style type="text/css">.snow-container{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:100001;}</style><div class="snow-container"></div>
 </body>
 </body>
 
